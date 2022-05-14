@@ -1,11 +1,9 @@
-const {ApolloServer, gql} = require('apollo-server')
+const { ApolloServer } = require('apollo-server')
+const typeDefs = require('./db/schema.js')
+const resolvers = require('./db/resolvers')
 
-const server = new ApolloServer()
+const server = new ApolloServer({ typeDefs, resolvers })
 
-const typeDefs = gql`
-
-`
-
-server.listen().then(({url}) => {
-    console.log(`Server running on ${url}`)
+server.listen().then(({ url }) => {
+  console.log(`Server running on ${url}`)
 })

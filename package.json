@@ -10,9 +10,11 @@
   "author": "Oscar Ventura",
   "license": "ISC",
   "dependencies": {
-    "apollo-server": "^3.7.0"
+    "apollo-server": "^3.7.0",
+    "graphql": "^16.5.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.16"
+    "nodemon": "^2.0.16",
+    "prettier": "^2.6.2"
   }
 }
