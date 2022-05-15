@@ -60,6 +60,7 @@ const typeDefs = gql`
 
     #Items
     getItems: [Item]
+    getItem(id: ID!): Item
   }
 
   #MUTATIONS

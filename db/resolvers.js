@@ -23,6 +23,15 @@ const resolvers = {
         console.log(error)
       }
     },
+    getItem: async (_, { id }) => {
+      // Check if item exists
+      const item = await Item.findById(id)
+      if (!item) {
+        throw new Error('ITEM NOT FOUND')
+      }
+
+      return item
+    },
   },
   Mutation: {
     // Users
