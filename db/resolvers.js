@@ -16,6 +16,13 @@ const resolvers = {
     },
 
     // Items
+    getItems: async () => {
+      try {
+        return await Item.find({})
+      } catch (error) {
+        console.log(error)
+      }
+    },
   },
   Mutation: {
     // Users

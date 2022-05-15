@@ -57,6 +57,9 @@ const typeDefs = gql`
   type Query {
     #Users
     getUser(token: String!): User
+
+    #Items
+    getItems: [Item]
   }
 
   #MUTATIONS
