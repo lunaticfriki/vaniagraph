@@ -108,6 +108,19 @@ const resolvers = {
       item = await Item.findOneAndUpdate({ _id: id }, input, { new: true })
       return item
     },
+    deleteItem: async (_, { id }) => {
+      // Check if item exists
+      let item = await Item.findById(id)
+
+      if (!item) {
+        throw new Error('ITEM NOT FOUND')
+      }
+
+      //Delete item from database
+      await Item.findOneAndDelete({ _id: id })
+
+      return 'ITEM DELETED'
+    },
   },
 }
 

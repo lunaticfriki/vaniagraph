@@ -72,6 +72,7 @@ const typeDefs = gql`
     #Items
     newItem(input: ItemInput): Item
     editItem(id: ID!, input: ItemInput): Item
+    deleteItem(id: ID!): String
   }
 `
 
