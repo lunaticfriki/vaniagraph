@@ -26,6 +26,7 @@ const resolvers = {
     getItem: async (_, { id }) => {
       // Check if item exists
       const item = await Item.findById(id)
+
       if (!item) {
         throw new Error('ITEM NOT FOUND')
       }
@@ -94,6 +95,18 @@ const resolvers = {
       } catch (error) {
         console.log(error)
       }
+    },
+    editItem: async (_, { id, input }) => {
+      // Check if item exists
+      let item = await Item.findById(id)
+
+      if (!item) {
+        throw new Error('ITEM NOT FOUND')
+      }
+
+      // Save item into database
+      item = await Item.findOneAndUpdate({ _id: id }, input, { new: true })
+      return item
     },
   },
 }
