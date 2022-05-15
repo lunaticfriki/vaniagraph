@@ -1,6 +1,7 @@
 import { gql } from 'apollo-server'
 
 const typeDefs = gql`
+  #TYPES
   type User {
     id: ID
     username: String
@@ -11,6 +12,23 @@ const typeDefs = gql`
   type Token {
     token: String
   }
+  type Item {
+    id: ID
+    title: String!
+    author: String
+    publisher: String
+    category: String!
+    topic: String
+    language: String
+    format: String
+    year: String
+    tags: [String]
+    description: String
+    image: String
+    createdAt: String
+  }
+
+  #INPUTS
   input UserInput {
     username: String!
     lastname: String!
@@ -21,12 +39,34 @@ const typeDefs = gql`
     email: String!
     password: String!
   }
+  input ItemInput {
+    title: String!
+    author: String
+    publisher: String
+    category: String!
+    topic: String
+    language: String
+    format: String
+    year: String
+    tags: [String]
+    description: String
+    image: String
+  }
+
+  #QUERIES
   type Query {
+    #Users
     getUser(token: String!): User
   }
+
+  #MUTATIONS
   type Mutation {
+    #Users
     newUser(input: UserInput): User
     authenticateUser(input: AuthenticateInput): Token
+
+    #Items
+    newItem(input: ItemInput): Item
   }
 `
 

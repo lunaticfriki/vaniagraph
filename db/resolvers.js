@@ -1,4 +1,5 @@
 import User from '../models/User.js'
+import Item from '../models/Item.js'
 import bcryptjs from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 
@@ -9,11 +10,15 @@ config({ path: '.env' })
 
 const resolvers = {
   Query: {
+    // Users
     getUser: async (_, { token }) => {
       return jwt.verify(token, process.env.SECRET)
     },
+
+    // Items
   },
   Mutation: {
+    // Users
     newUser: async (_, { input }) => {
       const { email, password } = input
 
@@ -37,7 +42,7 @@ const resolvers = {
         console.log(error)
       }
     },
-    authenticateUser: async (_, { input }, ctx) => {
+    authenticateUser: async (_, { input }) => {
       const { email, password } = input
 
       // Check if user is already registered
@@ -60,6 +65,18 @@ const resolvers = {
       // Create token
       return {
         token: createToken(isUser, process.env.SECRET, '24h'),
+      }
+    },
+
+    // Items
+    newItem: async (_, { input }) => {
+      try {
+        const newItem = new Item(input)
+
+        // Save into the database
+        return await newItem.save()
+      } catch (error) {
+        console.log(error)
       }
     },
   },
